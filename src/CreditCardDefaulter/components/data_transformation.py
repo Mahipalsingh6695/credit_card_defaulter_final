@@ -1,0 +1,124 @@
+
+import os
+import sys
+import pandas as pd
+import numpy as np
+
+from dataclasses import dataclass
+from src.CreditCardDefaulter.exception import customexception
+from src.CreditCardDefaulter.logger import logging
+
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OrdinalEncoder,StandardScaler
+
+from src.CreditCardDefaulter.utils.utils import save_object
+
+@dataclass
+class DataTransformationConfig:
+    preprocessor_obj_file_path=os.path.join('artifacts','preprocessor.pkl')
+
+
+class DataTransformation:
+    def __init__(self):
+        self.data_transformation_config=DataTransformationConfig()
+
+        
+    
+    def get_data_transformation(self):
+        
+        try:
+            logging.info('Data Transformation initiated')
+            
+            # Define which columns should be ordinal-encoded and which should be scaled
+            numerical_cols = ['num_pipeline__LIMIT_BAL', 'num_pipeline__SEX',
+       'num_pipeline__EDUCATION', 'num_pipeline__MARRIAGE',
+       'num_pipeline__AGE', 'num_pipeline__PAY_0', 'num_pipeline__PAY_2',
+       'num_pipeline__PAY_3', 'num_pipeline__PAY_4',
+       'num_pipeline__PAY_5', 'num_pipeline__PAY_6',
+       'num_pipeline__BILL_AMT1', 'num_pipeline__BILL_AMT2',
+       'num_pipeline__BILL_AMT3', 'num_pipeline__BILL_AMT4',
+       'num_pipeline__BILL_AMT5', 'num_pipeline__BILL_AMT6',
+       'num_pipeline__PAY_AMT1', 'num_pipeline__PAY_AMT2',
+       'num_pipeline__PAY_AMT3', 'num_pipeline__PAY_AMT4',
+       'num_pipeline__PAY_AMT5', 'num_pipeline__PAY_AMT6']
+            
+            
+            logging.info('Pipeline Initiated')
+            
+            ## Numerical Pipeline
+            num_pipeline=Pipeline(
+                steps=[
+                ('imputer',SimpleImputer(strategy='median')),
+                ('scaler',StandardScaler())
+
+                ]
+
+            )
+            
+           
+            
+            preprocessor=ColumnTransformer([
+            ('num_pipeline',num_pipeline,numerical_cols)
+            ])
+            
+            return preprocessor
+            
+
+            
+            
+        
+        except Exception as e:
+            logging.info("Exception occured in the initiate_datatransformation")
+
+            raise customexception(e,sys)
+            
+    
+    def initialize_data_transformation(self,train_path,test_path):
+        try:
+            train_df=pd.read_csv(train_path)
+            test_df=pd.read_csv(test_path)
+            
+            logging.info("read train and test data complete")
+            logging.info(f'Train Dataframe Head : \n{train_df.head().to_string()}')
+            logging.info(f'Test Dataframe Head : \n{test_df.head().to_string()}')
+            
+            preprocessing_obj = self.get_data_transformation()
+            
+            target_column_name = 'default.payment.next.month'
+            drop_columns = [target_column_name,'ID']
+            
+            input_feature_train_df = train_df.drop(columns=drop_columns,axis=1)
+            target_feature_train_df=train_df[target_column_name]
+            
+            
+            input_feature_test_df=test_df.drop(columns=drop_columns,axis=1)
+            target_feature_test_df=test_df[target_column_name]
+            
+            input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
+            
+            input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
+            
+            logging.info("Applying preprocessing object on training and testing datasets.")
+            
+            train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
+            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+
+            save_object(
+                file_path=self.data_transformation_config.preprocessor_obj_file_path,
+                obj=preprocessing_obj
+            )
+            
+            logging.info("preprocessing pickle file saved")
+            
+            return (
+                train_arr,
+                test_arr
+            )
+            
+        except Exception as e:
+            logging.info("Exception occured in the initiate_datatransformation")
+
+            raise customexception(e,sys)
+            
