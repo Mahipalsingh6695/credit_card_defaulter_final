@@ -32,17 +32,7 @@ class DataTransformation:
             logging.info('Data Transformation initiated')
             
             # Define which columns should be ordinal-encoded and which should be scaled
-            numerical_cols = ['num_pipeline__LIMIT_BAL', 'num_pipeline__SEX',
-       'num_pipeline__EDUCATION', 'num_pipeline__MARRIAGE',
-       'num_pipeline__AGE', 'num_pipeline__PAY_0', 'num_pipeline__PAY_2',
-       'num_pipeline__PAY_3', 'num_pipeline__PAY_4',
-       'num_pipeline__PAY_5', 'num_pipeline__PAY_6',
-       'num_pipeline__BILL_AMT1', 'num_pipeline__BILL_AMT2',
-       'num_pipeline__BILL_AMT3', 'num_pipeline__BILL_AMT4',
-       'num_pipeline__BILL_AMT5', 'num_pipeline__BILL_AMT6',
-       'num_pipeline__PAY_AMT1', 'num_pipeline__PAY_AMT2',
-       'num_pipeline__PAY_AMT3', 'num_pipeline__PAY_AMT4',
-       'num_pipeline__PAY_AMT5', 'num_pipeline__PAY_AMT6']
+            numerical_cols = ['LIMIT_BAL', 'SEX','EDUCATION', 'MARRIAGE','AGE', 'PAY_0', 'PAY_2','PAY_3', 'PAY_4','PAY_5', 'PAY_6','BILL_AMT1', 'BILL_AMT2','BILL_AMT3', 'BILL_AMT4','BILL_AMT5', 'BILL_AMT6','PAY_AMT1', 'PAY_AMT2','PAY_AMT3', 'PAY_AMT4','PAY_AMT5', 'PAY_AMT6']
             
             
             logging.info('Pipeline Initiated')
