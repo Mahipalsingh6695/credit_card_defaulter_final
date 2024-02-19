@@ -12,7 +12,7 @@ with open(path,"w") as f:
 from src.CreditCardDefaulter.prediction_pipeline import CustomData
 
 
-custdataobj=CustomData(1.52,62.2,58.0,7.27,7.33,4.55,"Premium","F","VS2")
+custdataobj=CustomData(120000,2,2,2,26,-1,2,0,0,0,2,2682,1725,2682,3272,3455,3261,0,1000,1000,1000,0,2000)
 
 data=custdataobj.get_data_as_dataframe()
 
