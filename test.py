@@ -9,7 +9,7 @@ os.makedirs(dir,exist_ok=True)
 with open(path,"w") as f:
     pass"""
     
-from src.CreditCardDefaulter.prediction_pipeline import CustomData
+from src.CreditCardDefaulter.pipelines.prediction_pipeline import CustomData
 
 
 custdataobj=CustomData(120000,2,2,2,26,-1,2,0,0,0,2,2682,1725,2682,3272,3455,3261,0,1000,1000,1000,0,2000)
