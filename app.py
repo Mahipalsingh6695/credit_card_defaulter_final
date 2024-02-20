@@ -28,7 +28,7 @@ def predict_datapoint():
             PAY_2=float(request.form.get('PAY_2')),
             PAY_3=float(request.form.get('PAY_3')),
             PAY_4=float(request.form.get('PAY_4')),
-            PAY_5=float(request.form.get('PAY_5'))     
+            PAY_5=float(request.form.get('PAY_5')),     
             PAY_6=float(request.form.get('PAY_6')),
             BILL_AMT1=float(request.form.get('BILL_AMT1')),
             BILL_AMT2=float(request.form.get('BILL_AMT2')),
