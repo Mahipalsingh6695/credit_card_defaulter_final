@@ -52,7 +52,11 @@ def predict_datapoint():
         
         pred=predict_pipeline.predict(final_data)
         
-        result=round(pred[0],2)
+        result = ""
+    if predict_pipeline == 1:
+        result = "The credit card holder will be Defaulter in the next month"
+    else:
+        result = "The Credit card holder will not be Defaulter in the next month"
         
         return render_template("result.html",final_result=result)
 
