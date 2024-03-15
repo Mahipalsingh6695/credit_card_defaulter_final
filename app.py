@@ -49,11 +49,13 @@ def predict_datapoint():
         final_data=data.get_data_as_dataframe()
         
         predict_pipeline=PredictPipeline()
+        print("predict_pipeline",predict_pipeline)
         
         pred=predict_pipeline.predict(final_data)
+        print("pred",pred)
         
         result = ""
-    if predict_pipeline == 1:
+    if pred == 1:
         result = "The credit card holder will be Defaulter in the next month"
     else:
         result = "The Credit card holder will not be Defaulter in the next month"

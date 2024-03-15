@@ -8,8 +8,7 @@ from src.CreditCardDefaulter.exception import customexception
 from dataclasses import dataclass
 from src.CreditCardDefaulter.utils.utils import save_object
 from src.CreditCardDefaulter.utils.utils import evaluate_model
-
-from sklearn.linear_model import LinearRegression, Ridge,Lasso,ElasticNet
+from sklearn.ensemble import RandomForestClassifier
 
 
 @dataclass 
@@ -32,10 +31,8 @@ class ModelTrainer:
             )
 
             models={
-            'LinearRegression':LinearRegression(),
-            'Lasso':Lasso(),
-            'Ridge':Ridge(),
-            'Elasticnet':ElasticNet()
+            'RandomForestClassifier':RandomForestClassifier(),
+            
         }
             
             model_report:dict=evaluate_model(X_train,y_train,X_test,y_test,models)
@@ -52,9 +49,9 @@ class ModelTrainer:
             
             best_model = models[best_model_name]
 
-            print(f'Best Model Found , Model Name : {best_model_name} , R2 Score : {best_model_score}')
+            print(f'Best Model Found , Model Name : {best_model_name} , accuracy_score : {best_model_score}')
             print('\n====================================================================================\n')
-            logging.info(f'Best Model Found , Model Name : {best_model_name} , R2 Score : {best_model_score}')
+            logging.info(f'Best Model Found , Model Name : {best_model_name} , accuracy_score : {best_model_score}')
 
             save_object(
                  file_path=self.model_trainer_config.trained_model_file_path,
