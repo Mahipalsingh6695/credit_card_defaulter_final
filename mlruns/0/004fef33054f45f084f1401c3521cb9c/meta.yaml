@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/credit_card_defaulter_final/mlruns/0/004fef33054f45f084f1401c3521cb9c/artifacts
+end_time: 1713457878143
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 004fef33054f45f084f1401c3521cb9c
+run_name: enchanting-panda-560
+run_uuid: 004fef33054f45f084f1401c3521cb9c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1713457843608
+status: 3
+tags: []
+user_id: LENOVO

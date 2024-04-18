@@ -1,6 +1,6 @@
 import os
 import sys
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score 
 from urllib.parse import urlparse
 import mlflow
 import mlflow.sklearn
@@ -19,7 +19,7 @@ class ModelEvaluation:
         rmse = np.sqrt(mean_squared_error(actual, pred))# here is RMSE
         mae = mean_absolute_error(actual, pred)# here is MAE
         r2 = r2_score(actual, pred)# here is r3 value
-        return rmse, mae, r2
+        return rmse, mae, r2 
 
 
     def initiate_model_evaluation(self,train_array,test_array):
@@ -31,7 +31,7 @@ class ModelEvaluation:
 
         
 
-            mlflow.set_registry_uri("https://dagshub.com/mahipalsinghchauhan1995/fsdsmendtoend.mlflow")
+            mlflow.set_registry_uri("https://dagshub.com/mahipalsinghchauhan1995/credit_card_defaulter_final.mlflow")
             
             tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
             
@@ -43,11 +43,12 @@ class ModelEvaluation:
 
                 predicted_qualities = model.predict(X_test)
 
-                (rmse, mae, r2) = self.eval_metrics(y_test, predicted_qualities)
+                (rmse, mae, r2, accuracy_score) = self.eval_metrics(y_test, predicted_qualities)
 
                 mlflow.log_metric("rmse", rmse)
                 mlflow.log_metric("r2", r2)
                 mlflow.log_metric("mae", mae)
+                
 
 
                 # Model registry does not work with file store

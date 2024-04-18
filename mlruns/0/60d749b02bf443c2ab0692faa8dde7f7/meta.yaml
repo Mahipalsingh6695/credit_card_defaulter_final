@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/credit_card_defaulter_final/mlruns/0/60d749b02bf443c2ab0692faa8dde7f7/artifacts
+end_time: 1713458846492
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 60d749b02bf443c2ab0692faa8dde7f7
+run_name: painted-colt-259
+run_uuid: 60d749b02bf443c2ab0692faa8dde7f7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1713458846176
+status: 4
+tags: []
+user_id: LENOVO
