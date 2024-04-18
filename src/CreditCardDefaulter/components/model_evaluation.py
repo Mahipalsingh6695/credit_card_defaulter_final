@@ -43,7 +43,7 @@ class ModelEvaluation:
 
                 predicted_qualities = model.predict(X_test)
 
-                (rmse, mae, r2, accuracy_score) = self.eval_metrics(y_test, predicted_qualities)
+                (rmse, mae, r2) = self.eval_metrics(y_test, predicted_qualities)
 
                 mlflow.log_metric("rmse", rmse)
                 mlflow.log_metric("r2", r2)

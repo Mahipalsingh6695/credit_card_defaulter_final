@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/credit_card_defaulter_final/mlruns/0/4d32bcb865184755878eb618782c3dcd/artifacts
+end_time: 1713461391084
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4d32bcb865184755878eb618782c3dcd
+run_name: fortunate-bird-966
+run_uuid: 4d32bcb865184755878eb618782c3dcd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1713461383240
+status: 3
+tags: []
+user_id: LENOVO
