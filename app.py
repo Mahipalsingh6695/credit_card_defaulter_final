@@ -47,20 +47,22 @@ def predict_datapoint():
         )
         # this is my final data
         final_data=data.get_data_as_dataframe()
+        # print("final data", final_data)
         
         predict_pipeline=PredictPipeline()
-        print("predict_pipeline",predict_pipeline)
+        # print("predict_pipeline",predict_pipeline)
         
         pred=predict_pipeline.predict(final_data)
         print("pred",pred)
         
         result = ""
+    # print("predition", round(pred))
     if pred == 1:
         result = "The credit card holder will be Defaulter in the next month"
     else:
         result = "The Credit card holder will not be Defaulter in the next month"
         
-        return render_template("result.html",final_result=result)
+    return render_template("result.html",final_result=result)
 
 #execution begin
 if __name__ == '__main__':

@@ -12,15 +12,19 @@ class PredictPipeline:
     
     def predict(self,features):
         try:
+            print("inside predict funtion")
             preprocessor_path=os.path.join("artifacts","preprocessor.pkl")
             model_path=os.path.join("artifacts","model.pkl")
             
             preprocessor=load_object(preprocessor_path)
             model=load_object(model_path)
+            print("model loaded path", model_path)
             
             scaled_data=preprocessor.transform(features)
+            print("scaled_data",scaled_data)
             
             pred=model.predict(scaled_data)
+            print("prediction successful", pred)
             
             return pred
         
